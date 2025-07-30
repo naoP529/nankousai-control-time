@@ -86,28 +86,30 @@ export default function Header() {
     }
 
     const links = [
-        {link:"/login", name:"ログイン"},
-        {link:"/logout", name:"ログアウト"},
-        {link:"/", name:"トップ"},
-        {link:"/auth/profile", name:"アカウント情報"},
-        {link:"/auth/requestTimer",name:"待ち時間の申請"},
-        {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集(別サイト)"}
-    ]
-
-    const links_pc = [
-        {link:"/login", name:"ログイン"},
-        {link:"/logout", name:"ログアウト"},
-        {link:"/", name:"トップ"},
-        {link:"/auth/profile", name:"アカウント情報"},
-        {link:"/auth/requestTimer",name:"待ち時間の申請"},
-        {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集(別サイト)"}
-    ]
-
-    const link_pc_mini = [
+        {link:"/login", name:"LogIn"},
+        {link:"/logout", name:"LogOut"},
         {link:"/", name:"トップ"},
         {link:"/auth/profile", name:"アカウント"},
         {link:"/auth/requestTimer",name:"待ち時間の申請"},
-        {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集(別サイト)"}
+        {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集"}
+    ]
+
+    const links_pc = [
+        {link:"/login", name:"LogIn"},
+        {link:"/logout", name:"LogOut"},
+        {link:"/", name:"トップ"},
+        {link:"/auth/profile", name:"アカウント"},
+        {link:"/auth/requestTimer",name:"待ち時間の申請"},
+        {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集"}
+    ]
+
+    const link_pc_mini = [
+        {link:"/login", name:"LogIn"},
+        {link:"/logout", name:"LogOut"},
+        {link:"/", name:"トップ"},
+        {link:"/auth/profile", name:"アカウント"},
+        {link:"/auth/requestTimer",name:"待ち時間の申請"},
+        {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集"}
     ]
 
     const pullDownMenu = () => {
