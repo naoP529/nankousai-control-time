@@ -91,7 +91,7 @@ export default function Header() {
         {link:"/", name:"トップ"},
         {link:"/auth/profile", name:"アカウント"},
         {link:"/auth/requestTimer",name:"待ち時間の申請"},
-        {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集"}
+        {link:"/move",name:"展示の編集"}
     ]
 
     const links_pc = [
@@ -100,7 +100,7 @@ export default function Header() {
         {link:"/", name:"トップ"},
         {link:"/auth/profile", name:"アカウント"},
         {link:"/auth/requestTimer",name:"待ち時間の申請"},
-        {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集"}
+        {link:"/move",name:"展示の編集"}
     ]
 
     const link_pc_mini = [
@@ -109,7 +109,7 @@ export default function Header() {
         {link:"/", name:"トップ"},
         {link:"/auth/profile", name:"アカウント"},
         {link:"/auth/requestTimer",name:"待ち時間の申請"},
-        {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集"}
+        {link:"/move",name:"展示の編集"}
     ]
 
     const pullDownMenu = () => {
