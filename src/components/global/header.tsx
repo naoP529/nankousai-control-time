@@ -104,10 +104,8 @@ export default function Header() {
     ]
 
     const link_pc_mini = [
-        {link:"/login", name:"ログイン"},
-        {link:"/logout", name:"ログアウト"},
         {link:"/", name:"トップ"},
-        {link:"/auth/profile", name:"アカウント情報"},
+        {link:"/auth/profile", name:"アカウント"},
         {link:"/auth/requestTimer",name:"待ち時間の申請"},
         {link:"https://nankousai-edit-page.vercel.app",name:"展示の編集(別サイト)"}
     ]
