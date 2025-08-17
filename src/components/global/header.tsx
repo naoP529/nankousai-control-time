@@ -86,24 +86,27 @@ export default function Header() {
     }
 
     const links = [
+        {link:"/chart",name:"推移"},
         {link:"/login", name:"LogIn"},
         {link:"/logout", name:"LogOut"},
         {link:"/", name:"トップ"},
         {link:"/auth/profile", name:"アカウント"},
         {link:"/auth/requestTimer",name:"待ち時間の申請"},
-        {link:"/move",name:"展示の編集"}
+        {link:"/move",name:"展示の編集"},
     ]
 
     const links_pc = [
+        {link:"/chart",name:"推移"},
         {link:"/login", name:"LogIn"},
         {link:"/logout", name:"LogOut"},
         {link:"/", name:"トップ"},
         {link:"/auth/profile", name:"アカウント"},
         {link:"/auth/requestTimer",name:"待ち時間の申請"},
-        {link:"/move",name:"展示の編集"}
+        {link:"/move",name:"展示の編集"},
     ]
 
     const link_pc_mini = [
+        {link:"/chart",name:"推移"},
         {link:"/login", name:"LogIn"},
         {link:"/logout", name:"LogOut"},
         {link:"/", name:"トップ"},
