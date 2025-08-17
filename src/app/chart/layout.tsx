@@ -19,13 +19,13 @@ const ProtectedLayout = ({children}:{children:React.ReactNode}) => {
             if (profileError) {
               console.log(profileError)
               alert("アカウント情報を取得できませんでした");
-              return //router.push("/login");
+              return router.push("/login");
             }
             if(profile[0].role === "admin"){
                 console.log("admin");
             }else{
                 alert("adminのみ閲覧可")
-                return //router.back();
+                return router.back();
             }
         }
         initialize();
