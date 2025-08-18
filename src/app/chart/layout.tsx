@@ -10,11 +10,13 @@ const ProtectedLayout = ({children}:{children:React.ReactNode}) => {
     const {session , loading} = useSession();
     const router = useRouter();
     useEffect(()=>{
-        if(!session && !loading){
-        return //router.push("/login")
-        }
+        if (loading || !session?.user) return;
         const initialize = async ()=>{
-            const user_id =session?.user.id;
+            const user_id =session.user.id;
+            if(!user_id){
+              alert("アカウントが取得できませんでした")
+              return router.push("/login")
+            }
             const {data:profile,error:profileError} = await supabase.from("user_profiles").select("role").eq("user_id", user_id);
             if (profileError) {
               console.log(profileError)
