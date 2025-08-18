@@ -17,9 +17,10 @@ const Page = () => {
   const [timeMap, setTimeMap] = useState<TimeMap>()
   const [newTime, setNewTime] = useState<number>(0)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [targetClass,setTargetClass] = useState<string>("")
+  
   const params = useSearchParams()
-  const id = params.get("id")?.toString()
+  const id = params.get("id")?.toString();
+  const name = params.get("name")?.toString();
   const {session , loading} = useSession();
   const router = useRouter();
   useEffect(() => {
@@ -32,7 +33,7 @@ const Page = () => {
   }
 }, [session, loading, router]);
   useEffect(() => {
-  if (loading || !session?.user || !id) return;
+  if (loading || !session?.user || !id || !name) return;
 
   const initialize = async () => {
     const user_id = session.user.id;
@@ -49,7 +50,7 @@ const Page = () => {
     const { role, TargetEditClass } = profiles[0];
     if (role === "timer" || role === "editor") {
       console.log(role);
-      if (TargetEditClass !== targetClass) {
+      if (TargetEditClass !== name) {
         if (confirm(`あなたの担当クラスは${TargetEditClass}です。変更しますか？`)) {
           return router.push("/auth/requestTimer");
         }
@@ -72,11 +73,10 @@ const Page = () => {
     const record = classes[0] as TimeMap;
     setTimeMap(record);
     setNewTime(record.waitTime);
-    setTargetClass(record.className);
   };
 
   initialize();
-}, [session, loading, id]);
+}, [session, loading, id,name,router]);
 
   const handleUpdate = async () => {
     if (!timeMap || !id) return

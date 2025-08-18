@@ -10,7 +10,12 @@ const ProtectedLayout = ({children}:{children:React.ReactNode}) => {
     const {session , loading} = useSession();
     const router = useRouter();
     useEffect(()=>{
-        if (loading || !session?.user) return;
+        if (loading) return; // ローディング中は何もしない
+        if (!session) {
+          router.push("/login");
+          return;
+        }
+
         const initialize = async ()=>{
             const user_id =session.user.id;
             if(!user_id){
