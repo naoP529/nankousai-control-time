@@ -3,21 +3,26 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabaseClient'
 import ExplanationClasses from './ExplanationClasses'
-
+type ClassData ={
+  id:number,
+  className:string
+}
 const Classes: React.FC = () => {
-  const [classNames, setClassNames] = useState<string[]>([])
+  const [classNames, setClassNames] = useState<ClassData[]>([])
 
-  const compare = (a: string, b: string) => a.localeCompare(b)
+  const compare = (a: ClassData, b: ClassData) => a.className.localeCompare(b.className)
 
   const getClassNames = async () => {
     const { data, error } = await supabase
       .from('contents')
-      .select('className')
+      .select('className,id')
     if (error || !data) {
       alert('データの取得に失敗しました')
       return
     }
-    setClassNames(data.map((r) => r.className).sort(compare))
+    const tmp = data as ClassData[]
+    const sorted = tmp.sort(compare)
+    setClassNames(sorted)
   }
 
   useEffect(() => {
@@ -39,11 +44,11 @@ const Classes: React.FC = () => {
               key={idx}
               href={{
                 pathname: '/control/edit',
-                query: {name:value },
+                query: {name:value.className ,id:value.id },
               }}
               className=" text-center text-white text-xl underline decoration-white decoration-2 hover:opacity-60 transition  duration-300"
             >
-              {value}へ
+              {value.className}へ
             </Link>
           ))}
         </div>

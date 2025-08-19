@@ -17,7 +17,7 @@ const ProtectedLayout = ({children}:{children:React.ReactNode}) => {
     },[loading,session,router])
     
   return (
-    <div>
+    <div className=''>
             <div className="fixed top-0 left-0 z-[9999]">
               <LoadingLayout></LoadingLayout>
             </div> 
