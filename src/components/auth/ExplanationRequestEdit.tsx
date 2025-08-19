@@ -17,7 +17,7 @@ const ExplanationRequestEdit: React.FC = () => {
           open ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <p className="text-md text-gray-600 ">
+        <p className="text-md text-gray-900 ">
           ここでは編集権限がリクエストできます。<br></br>
           1:「編集権限をリクエスト」をクリック<br></br>
           2:「編集したいクラス」を選択（基本的には自分のクラスを選択）<br></br>

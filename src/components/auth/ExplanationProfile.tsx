@@ -17,7 +17,7 @@ const ExplanationRequestEdit: React.FC = () => {
           open ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <p className="text-md text-gray-600 ">
+        <p className="text-md text-gray-900 ">
           ここでは自分の情報が登録できます。<br></br>
           1:「名前」を登録（本名でないと編集権限のリクエストが受理されません）<br></br>
           2:「クラス」を登録（自分のクラスを選択）<br></br>

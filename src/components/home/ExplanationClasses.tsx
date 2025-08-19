@@ -18,7 +18,7 @@ const ExplanationClasses: React.FC = () => {
           open ? 'max-h-60 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <p className="text-md text-gray-600 ">
+        <p className="text-md text-gray-900 ">
           ここでは待ち時間更新が可能です。<br></br>
           
           <span className='text-red-400 text-lg'>展示出しているのにない！？という方は展示の委員に申し出ください</span>
