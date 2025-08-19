@@ -24,7 +24,7 @@ export default function RootLayout({
       </head>
 
       <body
-        className={`${kiwi_Maru.className}`}
+        className={`${kiwi_Maru.className} bg-white`}
       >
         {children}
       </body>
