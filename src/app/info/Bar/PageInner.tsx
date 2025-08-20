@@ -370,7 +370,7 @@ const PageInner = ({classMap}:Props) => {
           </div>
         </ScrollContainer>
     </div>
-    <footer className="bg-gray-100 text-center py-2 text-sm text-gray-600 shadow-inner">
+    <footer className="bg-gray-900 text-center py-2 text-sm text-white shadow-inner">
         © 2025 待ち時間リアルタイムグラフ
     </footer>
     </div>
