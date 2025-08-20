@@ -86,7 +86,7 @@ export default function Header() {
     }
 
     const links = [
-        {link:"/chart",name:"推移"},
+        {link:"/info",name:"推移"},
         {link:"/login", name:"LogIn"},
         {link:"/logout", name:"LogOut"},
         {link:"/", name:"トップ"},
@@ -96,7 +96,7 @@ export default function Header() {
     ]
 
     const links_pc = [
-        {link:"/chart",name:"推移"},
+        {link:"/info",name:"推移"},
         {link:"/login", name:"LogIn"},
         {link:"/logout", name:"LogOut"},
         {link:"/", name:"トップ"},
@@ -106,7 +106,7 @@ export default function Header() {
     ]
 
     const link_pc_mini = [
-        {link:"/chart",name:"推移"},
+        {link:"/info",name:"推移"},
         {link:"/login", name:"LogIn"},
         {link:"/logout", name:"LogOut"},
         {link:"/", name:"トップ"},
