@@ -9,13 +9,13 @@ import React, { useEffect, useState } from "react"
 type TimeMap = {
   id: number
   className: string
-  prevTime: number
-  waitTime: number
+  prevTime: string
+  waitTime: string
 }
 
 const Page = () => {
   const [timeMap, setTimeMap] = useState<TimeMap>()
-  const [newTime, setNewTime] = useState<number>(0)
+  const [newTime, setNewTime] = useState<string>("0")
   const [isLoading, setIsLoading] = useState<boolean>(false)
   
   const params = useSearchParams()
@@ -72,7 +72,7 @@ const Page = () => {
 
     const record = classes[0] as TimeMap;
     setTimeMap(record);
-    setNewTime(record.waitTime);
+    setNewTime((record.waitTime));
   };
 
   initialize();
@@ -81,12 +81,13 @@ const Page = () => {
   const handleUpdate = async () => {
     if (!timeMap || !id) return
     setIsLoading(true)
-
+    const pre = Number(timeMap.waitTime);
+    const now = Number(newTime)
     const { error } = await supabase
       .from("contents")
       .update({
-        prevTime: timeMap.waitTime,
-        waitTime: newTime,
+        prevTime: pre,
+        waitTime: now,
       })
       .eq("id", id)
 
@@ -126,13 +127,27 @@ const Page = () => {
       </div>
 
       <div className="flex items-center space-x-3 mb-6">
-        <input
-          type="number"
-          value={newTime}
-          onChange={(e) => setNewTime(Number(e.target.value))}
-          placeholder="新しい待機時間"
-          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
+      <input
+        type="text"
+        inputMode="numeric"
+        value={newTime}
+        onChange={(e) => {
+          const raw = e.target.value;
+          if (/^\d*$/.test(raw)) {
+            const cleaned = raw.replace(/^0+(\d)/, "$1");
+            const num = cleaned === "" ? "" : String(Math.min(Number(cleaned), 180));
+            setNewTime(num);
+          }
+        }}
+        onBlur={() => {
+          if (newTime === "") {
+            setNewTime("0");
+          }
+        }}
+        placeholder="新しい待機時間"
+        maxLength={3}
+        className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+      />
         <button
           onClick={handleUpdate}
           disabled={isLoading}

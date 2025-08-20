@@ -1,4 +1,4 @@
-// components/LineChart.tsx
+
 import {
   Chart as ChartJS,
   LineElement,
@@ -334,7 +334,7 @@ export default function LineChart() {
           </ul>
         </nav>
       </aside>
-      <div className="fixed bottom-0 left-0 w-full h-16 bg-gray-900 text-white flex items-center justify-between px-6 z-40 shadow-md">
+      <div className="fixed bottom-0 left-0 w-full h-16 bg-gray-900 text-white flex items-center justify-between px-6 z-0 shadow-md">
         <span>© 2025 待ち時間表示システム</span>
         <button onClick={()=>{
           if(running){
