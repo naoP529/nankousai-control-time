@@ -221,6 +221,7 @@ const PageInner = ({classMap}:Props) => {
       const floorClasses: Congestion_info[] = class_location
         .map((item) => {
           const tar = item.classes;
+          
           let sum = 0;
           for (const className of tar) {
             const targetClass = classMap.find((item) => item.className == className);
@@ -228,7 +229,7 @@ const PageInner = ({classMap}:Props) => {
             const time = targetClass.waitTime;
             sum += time;
           }
-
+          
           return {
             floor: item.floors,
             sumTime: sum,
@@ -317,10 +318,10 @@ const PageInner = ({classMap}:Props) => {
   return (
     <>
     <div className="flex flex-col md:flex-row w-full">
-    <div className="w-[80%] ml-0  bg-white rounded shadow min-h-[calc(100vh-160px)]">
+    <div className="w-full lg:w-[80%] ml-0  bg-white rounded shadow min-h-[calc(100vh-160px)]">
       <Bar data={showData} options={options} />
     </div>
-    <div className="w-[20%] px-4 py-6 space-y-4">
+    <div className="w-full lg:w-[20%] px-4 py-6 space-y-4">
       <h2 className="text-lg font-semibold text-gray-700 border-b pb-2">各場所の状況</h2>
 
       {congestion_info?.map((value, i) => (
