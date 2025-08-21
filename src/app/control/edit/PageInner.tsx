@@ -1,6 +1,7 @@
 "use client"
 export const dynamic = "force-dynamic"
 
+import ClockArc from "@/app/info/Circle/ClockArc"
 import { useSession } from "@/hooks/useSession"
 import { supabase } from "@/lib/supabaseClient"
 import { useRouter, useSearchParams } from "next/navigation"
@@ -161,7 +162,14 @@ const Page = () => {
           {isLoading ? "更新中..." : "時間を更新"}
         </button>
       </div>
-    </div>
+      <div className="flex items-center justify-center">
+          <ClockArc minutes={Number(newTime)} />
+      </div>
+      
+        </div>
+        
+          
+        
     </div>
     
   )

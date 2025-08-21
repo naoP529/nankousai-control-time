@@ -3,6 +3,7 @@
 import { supabase } from "@/lib/supabaseClient"
 import Link from "next/link"
 import React, { useEffect, useState } from "react"
+import MiniClockArc from "../info/Circle/MiniClockArc"
 
 type ClassInfo = {
   className: string
@@ -48,22 +49,26 @@ export default function Page() {
         {data?.map((item) => (
         <div
           key={item.id}
-          className="border-2 border-slate-400 bg-white shadow-md rounded-lg p-8 mb-6 hover:shadow-lg transition-shadow"
+  className="border border-slate-300 bg-white shadow-sm rounded-xl p-6 mb-6 hover:shadow-md transition-shadow duration-300"
         >
           <Link
             href={{
               pathname: "/control/edit",
               query: { name: item.className, id: item.id },
             }}
-            className="block"
+            className="block hover:bg-slate-50 active:bg-slate-100 transition-colors"
           >
-            <div className="flex flex-col space-y-2">
-              <h3 className="text-xl font-semibold text-gray-800">
-                {item.className}
-              </h3>
-              <p className="text-base text-gray-600">
-                現在の待ち時間: {item.waitTime}分
-              </p>
+            <div className="flex items-center justify-between gap-6">
+              
+              <div className="flex flex-col justify-center">
+                <h3 className="text-xl lg:text-2xl font-semibold text-gray-800">{item.className}</h3>
+                <p className="text-lg lg:text-xl text-gray-600 mt-1">
+                  現在の待ち時間: <span className="font-medium text-blue-600">{item.waitTime}分</span>
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <MiniClockArc minutes={item.waitTime} />
+              </div>
             </div>
           </Link>
         </div>
