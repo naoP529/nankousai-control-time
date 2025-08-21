@@ -307,6 +307,7 @@ const PageInner = ({classMap}:Props) => {
       {title:"高校2年生",method:()=>{filerClassesByName("高校2年")},color:setScrollColor("2年")},
       {title:"高校3年生",method:()=>{filerClassesByName("高校3年")},color:setScrollColor("3年")},
       {title:"クスノキ広場",method:()=>{filerClassesByFloor("クスノキ広場")},color:"from-blue-100 via-sky-200 to-cyan-100"},
+      {title:"体育館",method:()=>{filerClassesByFloor("体育館")},color:"from-teal-300 via-emerald-400 to-green-400"},
       {title:"1F",method:()=>{filerClassesByFloor("1F")},color:"from-green-300 via-emerald-400 to-teal-400"},
       {title:"2F",method:()=>{filerClassesByFloor("2F")},color:"from-purple-300 via-violet-400 to-indigo-400"},
       {title:"3F",method:()=>{filerClassesByFloor("3F")},color:"from-orange-300 via-amber-400 to-yellow-400"},
@@ -327,21 +328,32 @@ const PageInner = ({classMap}:Props) => {
       <h2 className="text-lg font-semibold text-gray-700 border-b pb-2">各場所の状況</h2>
 
       {congestion_info?.map((value, i) => (
-        <div key={i} className="flex justify-between text-2xl bg-white rounded shadow p-4 border-l-4 border-blue-300">
-          <div className=" font-medium text-gray-600 mb-1">
-            {value.floor}
-          </div>
-          <div className={` font-semibold ${
-            value.situation === "空いている" ? "text-green-500" :
-            value.situation === "やや混雑" ? "text-yellow-500" :
-            value.situation === "混雑" ? "text-orange-500" :
-            value.situation === "渋滞" ? "text-red-500" :
-            value.situation === "激しい渋滞" ? "text-red-700" : "text-gray-500"
-          } mx-auto`
-           
-          }>
-            {value.situation}
-          </div>
+        <div key={i} className="">
+          <button
+              id={value.floor}
+              value={value.floor} 
+              onClick={(function() {
+                filerClassesByFloor(value.floor)
+              })}
+              className="hidden"
+          />
+          <label htmlFor={value.floor} className='cursor-pointer flex justify-between text-2xl bg-white rounded shadow p-4 border-l-4 border-blue-300'>
+              <div className=" font-medium text-gray-600 mb-1">
+                {value.floor}
+              </div>
+              <div className={` font-semibold ${
+                value.situation === "空いている" ? "text-green-500" :
+                value.situation === "やや混雑" ? "text-yellow-500" :
+                value.situation === "混雑" ? "text-orange-500" :
+                value.situation === "渋滞" ? "text-red-500" :
+                value.situation === "激しい渋滞" ? "text-red-700" : "text-gray-500"
+              } mx-auto`
+              
+              }>
+                {value.situation}
+              </div>
+          </label>
+          
         </div>
       ))}
     </div>
