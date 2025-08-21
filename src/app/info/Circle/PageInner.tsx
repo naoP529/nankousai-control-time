@@ -137,6 +137,7 @@ const PageInner = ({classMap}:Props) => {
         }
       })
       setSelectClasses(targetClasses);
+      setdisplay("全部")
     }
     const setScrollColor = (className:string)=>{
       const COLORS =["from-sky-400 via-blue-400 to-indigo-400","from-pink-300 via-rose-400 to-red-400","from-yellow-300 to-amber-400"]//青　赤　黄
@@ -178,36 +179,38 @@ const PageInner = ({classMap}:Props) => {
     ]
 
   return (
-    <>
-    <div className="flex flex-col md:flex-row w-full ">
+    <div className='user-select-none'>
+    <div className="flex flex-col lg:flex-row w-full ">
     <div className="relative w-full lg:w-[80%] ml-0  bg-white rounded shadow min-h-[calc(100vh-70px)] flex justify-center items-center ">
-        <div className='absolute top-0 w-full flex items-center justify-center'>
-            <div className='m-1 bg-gray-200 p-2 '>{display}</div>
+        <div className="absolute  top-4 left-1/2 -translate-x-1/2 w-max text-center text-2xl lg:text-5xl">
+            {display}の待ち時間
         </div>
-        <section className='mt-3'>
+        <section className='lg:pt-10'>
+        
 
         
             {Array.isArray(showData) && showData.length > 0 && showData.length < 10 ? (
-                    <ScrollContainer className=" overflow-x-auto">
-                         <div className="flex  min-w-full ">
-
-                            {showData?.map((value,i)=>(
-                            <div key={i} className='p-2 border m-2 rounded-2xl bg-white border-slate-200 drop-shadow-md'>
-                                <div  className='w-32 h-32  lg:w-48 lg:h-48 flex flex-col gap-1 '>
-                                    <ClockArc minutes={value.waitTime} />
-                                    <div className='text-center'>{value.className}</div>
-                                </div>
-                            </div>
-
-                             ))}
+                    <div className={` gap-4 ${
+                        showData.length < 5
+                          ? 'lg:flex lg:justify-center grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+                          : 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5'
+                      }`}
+                    >
+                      {showData?.map((value, i) => (
+                        <div key={i} className="p-2 border rounded-2xl bg-white border-slate-200 drop-shadow-md">
+                          <div className="w-32 h-32 lg:w-48 lg:h-48 flex flex-col gap-1">
+                            <ClockArc minutes={value.waitTime} />
+                            <div className="text-center">{value.className}</div>
+                          </div>
                         </div>
-                    </ScrollContainer> 
+                      ))}
+                    </div>
             ):(     
-                    <div className="flex justify-center items-center w-full h-full ">
-                        <ScrollContainer className="overflow-y-auto h-[calc(100vh-160px)] w-full items-center justify-center ">
+                    <div className="flex justify-center items-center w-full min-h-screen ">
+                        <ScrollContainer className="flex overflow-y-auto h-[calc(100vh-160px)] w-full justify-center items-start pt-6 pb-24">
                             <div className="flex flex-wrap  justify-center">
                                 {showData?.map((value, i) => (
-                                  <div key={i} className="p-2 border m-2 rounded-2xl bg-white border-slate-200 drop-shadow-md">
+                                  <div key={i} className="p-2 border m-2 rounded-2xl bg-white border-slate-200 drop-shadow-md h-auto">
                                     <div className="w-32 h-32 lg:w-48 lg:h-48 flex flex-col gap-1">
                                       <ClockArc minutes={value.waitTime} />
                                       <div className="text-center">{value.className}</div>
@@ -226,7 +229,7 @@ const PageInner = ({classMap}:Props) => {
         </section>
         
     </div>
-    <div className="w-full lg:w-[20%] px-4 py-6 space-y-4">
+    <div className="w-full lg:w-[20%] px-4 py-6 space-y-4 pb-40 lg:pb-0">
       <h2 className="text-lg font-semibold text-gray-700 border-b pb-2">各場所の状況</h2>
 
       {congestion_info?.map((value, i) => (
@@ -281,7 +284,7 @@ const PageInner = ({classMap}:Props) => {
     </footer>
     </div>
 
-    </>
+    </div>
   )
 }
 
