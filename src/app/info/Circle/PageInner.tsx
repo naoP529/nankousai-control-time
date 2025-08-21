@@ -1,20 +1,8 @@
-import { ChartData, ChartOptions } from 'chart.js';
 import React, { useEffect, useState } from 'react'
-import { Bar, Pie } from 'react-chartjs-2';
-import {
-  Chart,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-} from 'chart.js';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-
 import ScrollContainer from 'react-indiana-drag-scroll';
 import { supabase } from '@/lib/supabaseClient';
 import ClockArc from './ClockArc';
 
-Chart.register(CategoryScale, LinearScale, BarElement,ArcElement, Title, Tooltip, Legend);
 
 type classMap = {
   id:number,
@@ -192,8 +180,12 @@ const PageInner = ({classMap}:Props) => {
   return (
     <>
     <div className="flex flex-col md:flex-row w-full ">
-    
-    <div className="w-full lg:w-[80%] ml-0  bg-white rounded shadow min-h-[calc(100vh-70px)] flex justify-center items-center ">
+    <div className="relative w-full lg:w-[80%] ml-0  bg-white rounded shadow min-h-[calc(100vh-70px)] flex justify-center items-center ">
+        <div className='absolute top-0 w-full flex items-center justify-center'>
+            <div className='m-1 bg-gray-200 p-2 '>{display}</div>
+        </div>
+        <section className='mt-3'>
+
         
             {Array.isArray(showData) && showData.length > 0 && showData.length < 10 ? (
                     <ScrollContainer className=" overflow-x-auto">
@@ -231,7 +223,7 @@ const PageInner = ({classMap}:Props) => {
             
 
         }
-        
+        </section>
         
     </div>
     <div className="w-full lg:w-[20%] px-4 py-6 space-y-4">

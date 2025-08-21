@@ -2,8 +2,7 @@ import { useEffect, useState } from 'react';
 
 export default function AnimatedClockArc({ minutes }: { minutes: number }) {
     const percent = Math.min(minutes / 60, 3);
-    const fullRounds = Math.floor(percent);   
-    const remainder = percent - fullRounds;   
+    const fullRounds = Math.floor(percent);     
 
     const baseColor = '#3b82f6';  
     const extraColor = "#FFC800";
@@ -58,7 +57,7 @@ export default function AnimatedClockArc({ minutes }: { minutes: number }) {
       const targetOffset = 100 * (1 - extraPercent);
       let frame = 0;
       const frames = 30;
-      const startOffset = offset2;
+      const startOffset = offset3;
       const delta = targetOffset - startOffset;
 
       const animate = () => {
