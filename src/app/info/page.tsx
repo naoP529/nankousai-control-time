@@ -9,6 +9,7 @@ const Page = () => {
         <Link href={"/info/Line"}>折れ線グラフ</Link>
         <Link href={"/info/Bar"}>棒グラフ</Link>
         <Link href={"/info/Circle"}>円グラフ</Link>
+        <Link href={"/info/Ad"}>広告</Link>
     </div>
   )
 }
