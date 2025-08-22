@@ -233,7 +233,7 @@ const PageInner = ({classMap}:Props) => {
       <h2 className="text-lg font-semibold text-gray-700 border-b pb-2">各場所の状況</h2>
 
       {congestion_info?.map((value, i) => (
-        <div key={i} className="flex justify-between text-2xl bg-white rounded shadow p-4 border-l-4 border-blue-300">
+        <div key={i} onClick={()=>filerClassesByFloor(value.floor)} className="flex justify-between text-2xl bg-white rounded shadow p-4 border-l-4 border-blue-300 active:bg-green-300 transition duration-300">
           <div className=" font-medium text-gray-600 mb-1">
             {value.floor}
           </div>
