@@ -107,7 +107,8 @@ const PageInner = ({classMap}:Props) => {
           ticks: {
             color: '#444',
             font: {
-              size: 12
+              weight:"bolder",
+              size: 20
             }
           },
           grid: {
@@ -118,21 +119,22 @@ const PageInner = ({classMap}:Props) => {
           beginAtZero: true,
           title: {
             display: true,
-            text: '待ち時間',
-            color: '#666',
+            text: '分',
+            color: '#000',
             font: {
-              size: 14,
+              size: 18,
               weight: 'bold'
-            }
+            },
           },
           ticks: {
-            color: '#444',
+            color: '#000',
             font: {
-              size: 12
+              weight:"bold",
+              size: 20
             }
           },
           grid: {
-            color: 'rgba(200,200,200,0.2)'
+            color: 'rgba(200,200,200,1)'
           }
         }
   }

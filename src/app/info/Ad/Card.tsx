@@ -152,7 +152,7 @@ const Card = ({data,life}:Props) => {
             <div className="flex w-full h-full p-10 ">
             <div className="basis-[60%] bg-slate-100 p-6 rounded-l-xl  space-y-4">
                 <div className={`text-4xl text-gray-500 tracking-wide ${setTextColor(data.types)}`}>{data.className}</div>
-                <div className="text-6xl font-bold text-gray-800">{data.title}</div>
+                <div className={`text-6xl font-bold text-gray-800 ${KaiseiDecol.className}`}>{data.title}</div>
 
                 <div className="flex flex-nowrap gap-4 text-gray-700">
                     <div className="flex items-center gap-1">
@@ -175,13 +175,13 @@ const Card = ({data,life}:Props) => {
                         <div key={i}className={`py-3 px-2 min-w-40 bg-gradient-to-br ${
                                           Tags.find((item) => item.name === value)?.color ??
                                           "bg-gradient-to-r from-pink-500 to-pink-300"
-                                        }  text-white  rounded-md flex items-center justify-center opacity-90 cursor-pointer active:scale-95 transition-transform duration-200 hover:opacity-100`}>
+                                        }  text-white  rounded-md flex items-center justify-center opacity-90 `}>
                             <p className="m-auto text-base  text-gray-50 font-medium">{value}</p>
                         </div>
                     ))}
                 </div>
-                <div className="space-y-1">
-                    <div className="text-5xl font-semibold text-gray-700">{data.tagline}</div>
+                <div className="space-y-1"> 
+                    <div className={`text-5xl font-semibold text-gray-700 ${KaiseiDecol.className}` }>{data.tagline}</div>
                     <div className="ml-[2vw] mr-[3vw] my-[3vw] text-[4vw] lg:ml-4 lg:mr-6 lg:text-2xl lg:my-5 lg:leading-[150%] text-[#00b2b5] font-light tracking-[-0.01rem]  opacity-80 leading-[160%] text-justify">
                         <p className="whitespace-pre-line"> &ensp;{data.content}</p>
                      </div>

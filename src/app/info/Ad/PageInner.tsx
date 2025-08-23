@@ -49,8 +49,14 @@ type Event ={
     tagline:string,//キャッチコピー
     content:string,
 }
+type Floor ={
+    floors:string,
+    classes:string[]
+}
 const PageInner = () => {
-    const EventRef = useRef<Event[]>([])
+    const EventRef = useRef<Event[]>([]);
+    const FloorRef = useRef<Floor[]>([]);
+    const [index,setIndex] = useState(0)
     const fetchData  = async ()=>{
     const {data:rawevents} = await supabase.from('contents').select(`className,comment,place,type,genre,waitTime,title,imageURL,imageVersion,imageBackURL,time` );
     const {data:intro} = await supabase.from("introduction").select("className,title,content");
@@ -108,13 +114,23 @@ const PageInner = () => {
     const sorted = CLASSDATA.sort((a,b)=> a.className.localeCompare(b.className))
     EventRef.current= sorted
     console.log(sorted);
-
+    setIndex(sorted.length);
     
     
 
     }
+    const fetchFloorMap = async ()=>{
+        const {data,error} = await supabase.from("others").select("data").eq("DATANAME","class_locationByFloor");
+        if(error || !data){
+            return console.log(error)
+        }
+        const floorMap = data[0].data as Floor[];
+        FloorRef.current = floorMap;
+        console.log(floorMap);
+    }
     useEffect(()=>{
         fetchData();
+        fetchFloorMap()
     const subscription = supabase
         .channel('contents-realtime')
         .on(
@@ -218,8 +234,16 @@ const PageInner = () => {
       }
 
     },[])
+
+
   return (
-        <ShowCards eventRef = {EventRef} />
+    <>
+        <div>
+
+        </div>
+        <ShowCards eventRef = {EventRef} floorRef={FloorRef} index={index}/>
+    </>
+        
   )
 }
 
