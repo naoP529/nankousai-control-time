@@ -70,7 +70,7 @@ export default function AnimatedClockArc({ minutes }: { minutes: number }) {
       animate();
     }, [minutes]);
     return (
-      <svg viewBox="0 0 36 36" className="w-24 sm:w-32 lg:w-40">
+      <svg viewBox="0 0 36 36" className="w-full">
         <circle cx="18" cy="18" r="16" fill="none" stroke="#eee" strokeWidth="4" />
         {percent > 0 && (
           <circle
