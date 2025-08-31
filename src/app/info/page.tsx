@@ -1,16 +1,17 @@
 import Header from '@/components/global/header'
 import Link from 'next/link'
 import React from 'react'
+import PageInner from './PageInner'
+import BackTo from '@/components/global/back_button'
 
 const Page = () => {
   return (
-    <div>
-        <Header></Header>
-        <Link href={"/info/Line"}>折れ線グラフ</Link>
-        <Link href={"/info/Bar"}>棒グラフ</Link>
-        <Link href={"/info/Circle"}>円グラフ</Link>
-        <Link href={"/info/Ad"}>広告</Link>
+    <div className="">
+      <Header />
+      <PageInner/>
+      <BackTo name={'トップへ'} link={'/'} />
     </div>
+
   )
 }
 

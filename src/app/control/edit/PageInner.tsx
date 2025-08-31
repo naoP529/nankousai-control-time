@@ -12,11 +12,13 @@ type TimeMap = {
   className: string
   prevTime: string
   waitTime: string
+  renewTime:string
 }
 
 const Page = () => {
   const [timeMap, setTimeMap] = useState<TimeMap>()
-  const [newTime, setNewTime] = useState<string>("0")
+  const [newTime, setNewTime] = useState<string>("0");
+
   const [isLoading, setIsLoading] = useState<boolean>(false)
   
   const params = useSearchParams()
@@ -64,7 +66,7 @@ const Page = () => {
       return router.back();
     }
 
-    const { data: classes, error: contentError } = await supabase .from("contents") .select("id, className, prevTime, waitTime") .eq("id", id);
+    const { data: classes, error: contentError } = await supabase .from("contents") .select("id, className, prevTime, waitTime,renewTime") .eq("id", id);
 
     if (contentError || !classes?.length) {
       alert(contentError?.message || "データ取得失敗");
@@ -74,7 +76,7 @@ const Page = () => {
     const record = classes[0] as TimeMap;
     setTimeMap(record);
     setNewTime((record.waitTime));
-  };
+    };
 
   initialize();
 }, [session, loading, id,name,router]);
@@ -84,11 +86,20 @@ const Page = () => {
     setIsLoading(true)
     const pre = Number(timeMap.waitTime);
     const now = Number(newTime)
+    const time = new Date(); 
+    const month = time .getMonth()
+    const date = time.getDate()
+    const day = `${month}月${date}日`
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
+    const mes = `${day}${hours}時${minutes}分`
+    console.log(mes);
     const { error } = await supabase
       .from("contents")
       .update({
         prevTime: pre,
         waitTime: now,
+        renewTime:mes
       })
       .eq("id", id)
 
@@ -101,6 +112,7 @@ const Page = () => {
         ...timeMap,
         prevTime: timeMap.waitTime,
         waitTime: newTime,
+        renewTime:mes
       })
     }
   }
@@ -125,8 +137,13 @@ const Page = () => {
             {timeMap?.prevTime ?? "-"}
           </span>
         </p>
+        <p className="text-gray-600">
+          最新の更新時刻:{" "}
+          <span className="font-medium text-gray-900">
+            {timeMap?.renewTime ?? "--日--時--分"}
+          </span>
+        </p>
       </div>
-
       <div className="flex items-center space-x-3 mb-6">
       <input
         type="text"

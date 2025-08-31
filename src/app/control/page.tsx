@@ -8,7 +8,8 @@ import MiniClockArc from "../info/Circle/MiniClockArc"
 type ClassInfo = {
   className: string
   id: number
-  waitTime: number
+  waitTime: number,
+  renewTime:string
 }
 
 export default function Page() {
@@ -18,7 +19,7 @@ export default function Page() {
     async function fetchData() {
       const { data: names, error } = await supabase
         .from("contents")
-        .select("className,id,waitTime")
+        .select("className,id,waitTime,renewTime")
 
       if (error || !names) {
         alert("データ取得エラー")
@@ -64,6 +65,9 @@ export default function Page() {
                 <h3 className="text-xl lg:text-2xl font-semibold text-gray-800">{item.className}</h3>
                 <p className="text-lg lg:text-xl text-gray-600 mt-1">
                   現在の待ち時間: <span className="font-medium text-blue-600">{item.waitTime}分</span>
+                </p>
+                <p className="text-lg lg:text-xl text-gray-600 mt-1">
+                  最新の更新時刻: <span className="font-medium text-black">{item.renewTime || "--月--日--時--分"}</span>
                 </p>
               </div>
               <div className="flex-shrink-0">
