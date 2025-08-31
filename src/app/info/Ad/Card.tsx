@@ -10,6 +10,7 @@ import ClockArc from '../Circle/ClockArc'
 import Image from 'next/image';
 import { KaiseiDecol } from '@/fonts'
 import MiniClockArc from '../Circle/MiniClockArc'
+import { div } from 'framer-motion/client'
 type Event ={
     className:string,
     title:string,
@@ -117,8 +118,14 @@ const Card = ({data,life}:Props) => {
 
         return result
     }
+
+    let adjust_between = 0;
+    if(data.types.length % 3 != 0) {
+      adjust_between = 3 - data.types.length % 3
+    } 
+
   return (
-    <div className="relative  w-full max-w-[95vw] sm:max-w-[90vw] lg:max-w-[80vw] aspect-[4/5] sm:aspect-[5/4] lg:aspect-[16/9] bg-white/30 backdrop-blur-md border-white/40 shadow-xl rounded-[50px] z-20 ">
+    <div className="relative  w-full max-w-[95vw] sm:max-w-[90vw] 2xl:max-w-[75vw] lg:max-w-[85vw] aspect-[4/5] sm:aspect-[5/4] lg:aspect-[16/9] bg-white/30 backdrop-blur-md border-white/40 shadow-xl rounded-[50px] z-20 ">
         <svg viewBox="0 0 160 90" preserveAspectRatio="none" className="absolute inset-0 w-full h-full pointer-events-none z-50">
             <defs>
               <linearGradient id="rectStrokeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -149,65 +156,78 @@ const Card = ({data,life}:Props) => {
             
             
             
-            <div className="flex w-full h-full p-10 ">
-            <div className="basis-[60%] bg-slate-100 p-6 rounded-l-xl  space-y-4">
-                <div className={`text-4xl text-gray-500 tracking-wide ${setTextColor(data.types)}`}>{data.className}</div>
-                <div className={`text-6xl font-bold text-gray-800 ${KaiseiDecol.className}`}>{data.title}</div>
+            <div className="flex w-full h-full 2xl:p-10 xl:p-8 p-6  ">
+              <div className="basis-[60%] bg-slate-100 2xl:p-10 xl:p-8 p-6 rounded-l-xl  space-y-4">
+                  <div className={`text-3xl xl:text-4xl  2xl:text-5xl text-gray-500 tracking-wide ${setTextColor(data.types)} ${KaiseiDecol.className}` } >{data.className}</div>
+                  <div className={`xl:text-7xl text-5xl mt-2  font-bold text-gray-800 ${KaiseiDecol.className}`}>{data.title}</div>
 
-                <div className="flex flex-nowrap gap-4 text-gray-700">
-                    <div className="flex items-center gap-1">
-                      <MdOutlinePlace className="text-blue-500 text-lg" />
-                      <span className="text-4xl">{data.place}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                        <IoTimeOutline className="text-blue-500 text-lg" />
-                        <span className="text-4xl">
-                            {data.time.map((value,i)=>(
-                                <span key={i} className='pl-1'>
-                                    {value}
-                                </span>
-                            ))}
-                        </span>
-                    </div>
-                </div>
-                <div className='flex gap-4'>
-                    {data.types.map((value,i)=>(
-                        <div key={i}className={`py-3 px-2 min-w-40 bg-gradient-to-br ${
-                                          Tags.find((item) => item.name === value)?.color ??
-                                          "bg-gradient-to-r from-pink-500 to-pink-300"
-                                        }  text-white  rounded-md flex items-center justify-center opacity-90 `}>
-                            <p className="m-auto text-base  text-gray-50 font-medium">{value}</p>
+                  <div className='flex w-full 2xl:mt-16 xl:mt-12 mt-10'>
+                    <div className="flex justify-center w-[40%]">
+                        <div className='w-full aspect-square hidden md:block'>
+                          <ClockArc minutes={data.waitTime} />
                         </div>
-                    ))}
-                </div>
-                <div className="space-y-1"> 
-                    <div className={`text-5xl font-semibold text-gray-700 ${KaiseiDecol.className}` }>{data.tagline}</div>
-                    <div className="ml-[2vw] mr-[3vw] my-[3vw] text-[4vw] lg:ml-4 lg:mr-6 lg:text-2xl lg:my-5 lg:leading-[150%] text-[#00b2b5] font-light tracking-[-0.01rem]  opacity-80 leading-[160%] text-justify">
-                        <p className="whitespace-pre-line"> &ensp;{data.content}</p>
-                     </div>
-                </div>
-            </div>
-            <div className="basis-[40%] bg-slate-100 p-6 rounded-r-xl shadow-md space-y-6">
-              <div className="w-full aspect-square overflow-hidden rounded-lg">
-                <Image
-                  src={`${data.frontImg}`}
-                  alt="紹介画像"
-                  width={800}
-                  height={800}
-                  className="w-full h-full object-cover"
-                />
+                        <div className='w-full aspect-square block md:hidden'>
+                          <MiniClockArc minutes={data.waitTime} />
+                        </div>
+                    </div>
+                    <div className="flex flex-col gap-[15%] 2xl:gap-[18%] text-gray-700 2xl:ml-10 xl:ml-8 ml-6 justify-center">
+                      <div className="flex items-center gap-1">
+                        <MdOutlinePlace className="text-blue-500 text-3xl xl:text-4xl 2xl:text-5xl relative top-1" />
+                        <span className="text-3xl xl:text-4xl 2xl:text-5xl">{data.place}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                          <IoTimeOutline className="text-blue-500 text-3xl xl:text-4xl 2xl:text-5xl relative top-1" />
+                          <span className="text-3xl xl:text-4xl 2xl:text-5xl">
+                              {data.time.map((value,i)=>(
+                                  <span key={i} className='pl-1'>
+                                      {value}
+                                  </span>
+                              ))}
+                          </span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div className='flex gap-4'>
+                      {data.types.map((value,i)=>(
+                          <div key={i}className={`py-3 px-2 min-w-40 bg-gradient-to-br ${
+                                            Tags.find((item) => item.name === value)?.color ??
+                                            "bg-gradient-to-r from-pink-500 to-pink-300"
+                                          }  text-white  rounded-md flex items-center justify-center opacity-90 `}>
+                              <p className="m-auto text-base  text-gray-50 font-medium">{value}</p>
+                          </div>
+                      ))}
+                  </div> */}
+                  <div className="space-y-1 flex items-center flex-col 2xl:mt-12 xl:mt-8"> 
+                      <div className={`2xl:text-xl xl:text-lg opacity-60 text-gray-700 ` }>{data.tagline}</div>
+                      <div className="lg:leading-[150%] 2xl:mt-1 2xl:text-3xl xl:text-2xl text-gray-900  font-light tracking-[-0.01rem]   leading-[160%] text-justify">
+                          <p className="whitespace-pre-line"> &ensp;{data.content}</p>
+                      </div>
+                  </div>
               </div>
-
-              
-              <div className="flex justify-center w-full ">
-                <div className='hidden md:block'>
-                    <ClockArc minutes={data.waitTime} />
+              <div className="basis-[40%] bg-slate-100 2xl:p-10 xl:p-8 p-6 xl:pl-0 2xl:pl-0 rounded-r-xl 2xl:space-y-6 xl:space-y-4 space-y-4">
+                <div className="w-full aspect-square overflow-hidden rounded-xl ">
+                  <Image
+                    src={`${data.frontImg}`}
+                    alt="紹介画像"
+                    width={800}
+                    height={800}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <div className='block md:hidden'>
-                    <MiniClockArc minutes={data.waitTime} />
-                </div>
+                <div className='flex gap-2 2xl:gap-3 flex-wrap justify-between'>
+                      {data.types.map((value,i)=>(
+                          <div key={i}className={` 2xl:py-3 xl:py-3 py-2 xl:px-2 px-1 2xl:min-w-40 xl:min-w-30 xl:w-[30%] w-[48%]  bg-gradient-to-br ${
+                                            Tags.find((item) => item.name === value)?.color ??
+                                            "bg-gradient-to-r from-pink-500 to-pink-300"
+                                          }  text-white  rounded-md flex items-center justify-center opacity-90 `}>
+                              <p className="m-auto 2xl:text-base text-sm  text-gray-50 font-medium">{value}</p>
+                          </div>
+                      ))}
+                      {adjust_between != 0 && 
+                        <div className='2xl:py-3 xl:py-3 py-2 xl:px-2 px-1 2xl:min-w-40 xl:min-w-30 xl:w-[30%] w-[48%]'></div>
+                      }
+                  </div>  
               </div>
-            </div>
             </div>
             }
         </div>
